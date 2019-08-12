@@ -1,0 +1,31 @@
+% CAMMP Settings
+% Pascal Richter [richter@mathcces.rwth-aachen.de]
+% MathCCES, RWTH Aachen University, September 2015
+
+\definecolor{kit-green100}{rgb}{0,.59,.51}
+% -----------------------------------------------------------------------------------------------
+\gdef\CAMMPweekName{MathSEE Modeling Week 2019}%CAMMP week 2016  |  MINT-EC-Akademie
+\gdef\CAMMPweekSubname{~}%powered by B\"urgerstiftung  |  CAMMP week 2015
+\gdef\CAMMPweekDate{18. bis 23. August 2019}
+\gdef\CAMMPweekPlace{Bad Liebenzell}%Voeren (Belgien)  |  Aachen
+\gdef\setHeaderAsCAMMPweek{\setHeader{\color{kit-green100}\bfseries\huge\CAMMPweekName\\ \normalsize\CAMMPweekSubname}}
+
+\gdef\CAMMPpartner{
+	%\includegraphics[height=5ex]{logo/s_mintec} \hfill
+%		\includegraphics[height=5ex]{logo/s_ANTalive} \hfill
+}
+
+\gdef\setFooterAsCAMMPpartner{
+	\addtolength{\textheight}{-8mm}
+	\addtolength{\footskip}{11mm}
+	\setFooter{\CAMMPpartner}
+}
+
+\gdef\setHalfPage{
+	\setlength{\paperheight}{148.5mm}
+	\setlength{\textheight}{105mm}
+}
+
+% -----------------------------------------------------------------------------------------------
+% END
+\endinput

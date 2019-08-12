@@ -1,0 +1,215 @@
+%% LaTeX-Beamer template for KIT design
+%% by Erik Burger, Christian Hammer
+%% title picture by Klaus Krogmann
+%%
+%% version 2.1
+%%
+%% mostly compatible to KIT corporate design v2.0
+%% http://intranet.kit.edu/gestaltungsrichtlinien.php
+%%
+%% Problems, bugs and comments to
+%% burger@kit.edu
+
+\documentclass[18pt]{beamer}
+\def\tempfolder{../template/}
+%% SLIDE FORMAT
+
+% use 'beamerthemekit' for standard 4:3 ratio
+% for widescreen slides (16:9), use 'beamerthemekitwide'
+\usepackage{\tempfolder beamerthemekit}
+% \usepackage{templates/beamerthemekitwide}
+
+% -- Settings --------------------------------------------------------%
+\setbeamertemplate{navigation symbols}{}
+
+\def\figfolder{../figs/}
+\def\logofolder{\tempfolder logo/}
+
+\newcommand{\playIcon}{%
+	\begin{tikzpicture}[scale=0.5]
+	\fill[fill=black] (0,0) -- (1.5,1) -- (0, 2) -- (0, 0);
+	\end{tikzpicture}}
+
+
+\usepackage{animate}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{framed, color}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{graphicx}
+%\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{qrcode}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{shapes}
+\usetikzlibrary{calc}
+
+%% TITLE PICTURE
+%\titleimage{mypicture}
+
+%% TITLE LOGO
+%\titlelogo{mylogo}
+
+%% TikZ INTEGRATION
+% use these packages for PCM symbols and UML classes
+% \usepackage{templates/tikzkit}
+% \usepackage{templates/tikzuml}
+
+% the presentation starts here
+
+\title[Gruppe]{4D visualisation of the tropopause, identification of air mass exchanges and their fate}
+\subtitle{Department of Mathematics \& Steinbuch Centre for Computing}
+\author{Tianbai Xiao}
+
+\institute{MathSEE Modeling Week}
+
+%---------------------------------------------------------------------------------
+\begin{document}
+	
+	\selectlanguage{english}
+	
+	%title page
+	\titleimage{\tempfolder logo/background}
+	\titlelogo{\tempfolder logo/MathSEE}
+	%----------------------------------------------------------%
+	
+	%----------------------------------------------------------%
+	% titlepage
+	\maketitle
+
+	%----------------------------------------------------------%
+	%----------------------------------------------------------%
+	\begin{frame}[c]
+		\frametitle{Optimales Warenlager}
+		\vspace*{-8mm}
+		\begin{center}
+			\begin{tikzpicture}
+			\node at (0, 4)		{\includegraphics[width=0.3\textwidth]{../figs/z_laptop}};
+			\node at (0, 2.7)	{\Large Kunde };
+			
+			\uncover<2->{
+				\node at (3.6, 2)		{\includegraphics[width=0.3\textwidth]{../figs/z_lieferant}};
+				\node[rotate=-35] at (1.8, 3)		{\includegraphics[width=1cm]{../figs/z_leftRightArrow}};
+				\node at (3.6, 0.5)	{\Large H\"andler };
+				\node at (3.6, 0)	{ (Online Shop) };
+			}
+			\uncover<3->{
+				\node at (7.5, -0.5)		{\includegraphics[width=0.27\textwidth]{../figs/z_lager}};
+				\node[rotate=-35] at (5.5, 0.5)		{\includegraphics[width=1cm]{../figs/z_leftRightArrow}};
+				\node at (7.5, -2)	{\Large Lager };
+			}
+			\uncover<4->{
+				\node [draw, rectangle, thick, fill=red, fill opacity=0.1, color=red, minimum height=5.8cm, minimum width=6.9cm] at (5.7, 0.5) {};
+			}
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	
+	\begin{frame}[c]
+		\frametitle{Optimales Warenlager}
+		\vspace*{-7mm}
+		\begin{center}
+			\begin{tikzpicture}
+			\uncover<1->{
+				\node at (3.8, -1)	{\includegraphics[width=0.25\textwidth]{../figs/z_lieferant}};
+				\node at (1.8, -1.4)	{ \large H\"andler };
+			}
+			
+			\uncover<2->{
+				\node at (6.5, 2.6)	{\includegraphics[width=6cm]{../figs/z_lager}};
+				\node at (6.5, 0)	{Warenlager};
+			}
+			
+			\uncover<3->{
+				\node at (6.5, 5.3)	{Artikel};
+			}
+			
+			\uncover<3->{
+				\node at (6.5, 5.3)	{Artikel};	
+				\pgfmathsetmacro{\x}{3.8}
+				\pgfmathsetmacro{\y}{3.7}
+				\draw[draw, fill=red, opacity=0.3] ($(0,0)+(\x,\y)$) rectangle ($(0.5,0.5)+(\x,\y)$);
+				
+				\pgfmathsetmacro{\x}{5.7}
+				\pgfmathsetmacro{\y}{3.1}
+				\draw[draw, fill=darkgreen, opacity=0.6] ($(0,0)+(\x,\y)$) rectangle ($(0.4,0.4)+(\x,\y)$);
+				
+				\pgfmathsetmacro{\x}{8.35}
+				\pgfmathsetmacro{\y}{3.2}
+				\draw[draw, fill=blue, opacity=0.4] ($(0,0)+(\x,\y)$) rectangle ($(0.4,0.4)+(\x,\y)$);
+				
+				\pgfmathsetmacro{\x}{8.2}
+				\pgfmathsetmacro{\y}{1.7}
+				\draw[draw, fill=black, opacity=0.5] ($(0,0)+(\x,\y)$) rectangle ($(0.4,0.4)+(\x,\y)$);
+			}
+			
+			\uncover<4->{
+				\node at (0, 0.15)	{Kundenbestellungen};
+			}
+			
+			\pgfmathsetmacro{\x}{0}
+			\pgfmathsetmacro{\y}{0}
+			\uncover<4->{
+				\node[yscale=1] at ($(0, 3.5)+(\x,\y)$)	{\includegraphics[width=0.3\textwidth]{../figs/z_einkaufszettel}};
+				\node at ($(0, 4.1)+(\x,\y)$)	{\large \it \tt 1 x iPhone5 };
+				\node at ($(0, 3.4)+(\x,\y)$)	{\large \it \tt 3 x Rasier- };
+				\node at ($(0.5, 3.0)+(\x,\y)$)	{\large \it \tt klingen };
+				\node at ($(0, 2.4)+(\x,\y)$)	{\large \it \tt 5 x Stifte };
+				%\draw[draw, fill=red, opacity=0.2] ($(-1.65,1.3)+(\x,\y)$) rectangle ($(1.65,5.7)+(\x,\y)$);
+			}
+			
+			\pgfmathsetmacro{\x}{0.35}
+			\pgfmathsetmacro{\y}{-0.35}
+			\uncover<5->{
+				\node[yscale=1] at ($(0, 3.5)+(\x,\y)$)	{\includegraphics[width=0.3\textwidth]{../figs/z_einkaufszettel}};
+				\node at ($(0, 4.1)+(\x,\y)$)	{\large \it \tt 3 x Socken };
+				\node at ($(0, 3.4)+(\x,\y)$)	{\large \it \tt 2 x Heftordner };
+				\node at ($(0.5, 3.0)+(\x,\y)$)	{\large \it \tt  };
+				\draw[draw, fill=red, opacity=0.15] ($(-1.65,1.3)+(\x,\y)$) rectangle ($(1.65,5.7)+(\x,\y)$);
+			}
+			
+			\pgfmathsetmacro{\x}{0.7}
+			\pgfmathsetmacro{\y}{-0.7}
+			\uncover<6->{
+				\node[yscale=1] at ($(0, 3.5)+(\x,\y)$)	{\includegraphics[width=0.3\textwidth]{../figs/z_einkaufszettel}};
+				\node at ($(0, 4.1)+(\x,\y)$)	{\large \it \tt 1 x Dschungel-};
+				\node at ($(0.5, 3.75)+(\x,\y)$)	{\large \it \tt buch DVD };
+				\node at ($(0, 3.1)+(\x,\y)$)	{\large \it \tt 1 x Teddybär};
+				\node at ($(0, 2.5)+(\x,\y)$)	{\large \it \tt 2 x Handschuhe};
+				\draw[draw, fill=darkgreen, opacity=0.4] ($(-1.65,1.3)+(\x,\y)$) rectangle ($(1.65,5.7)+(\x,\y)$);
+			}
+			
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	
+	\begin{frame}[c]
+		\frametitle{Optimales Warenlager}
+		\large
+		
+		{\bf Gegeben}
+		\begin{itemize}
+			\item Lageranordnung (Gänge, Regale, etc.)
+			\item Lagerartikel
+			\item Kundenbestellungen
+		\end{itemize}
+		
+		\vspace{5mm}
+		
+		\uncover<2->{
+			{\bf Gesucht}
+			\begin{itemize}
+				\item Anordnung der Artikel im Lager?
+				\item Ziel: Minimaler Weg
+			\end{itemize}
+		}
+	\end{frame}
+	
+\end{document}
+% ---------------------------------------------------------------------------------

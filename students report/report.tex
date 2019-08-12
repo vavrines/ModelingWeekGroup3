@@ -1,0 +1,200 @@
+\def\template{../template/}
+\makeatletter \ifx\input@path\@undefined \def\input@path{{\template}} \else \g@addto@macro\input@path{{\template}} \fi \makeatother
+
+
+% -- Documentclass --------------------------------------------------------%
+\documentclass[pagenumoff]{kit-document}
+\usepackage{CAMMP-settings}
+
+
+% -- Settings --------------------------------------------------------%
+\setLogo{logo/KITengMathSEE}
+\setHeaderAsCAMMPweek
+\setFooterAsCAMMPpartner
+
+
+% ----------------------------------------------------------%
+\begin{document}
+	
+	\begin{center}
+		{\bfseries\LARGE Titel}
+		\\[1ex] Namen der Gruppenmitglieder
+		\\[1ex] \&
+		\\ \includegraphics[height=3em]{../figs/z_jtl}
+		\\ \scriptsize Institutsname
+	\end{center}
+	
+	
+	% -- KURZZUSAMMENFASSUNG -------------------------------------------------------------------------------
+	\begin{abstract}
+		\noindent{\bfseries Kurzzusammenfassung}\\
+		Es soll ein möglichst optimales Lagersystem entstehen, wodurch man die bestmöglichste und kürzeste Route zu diversen 			Artikeln erhält. Dieses Lager ist systematisch angeordnet, sowohl, dass Kosten, als auch Zeit reduziert werden. Dabei 		                      sollte 	der menschliche Aspekt berücksichtigt werden, um mögliche Fehlgriffe zu vermeiden. \\
+			 \noindent
+		 
+	\end{abstract}
+	
+	
+	% -- AUFGABENSTELLUNG -------------------------------------------------------------------------------
+	\section{Aufgabenstellung}
+	
+	Der Versandhandel wächst im Gegensatz zum stationären Handel seit Jahr im zweistelligen Prozentbereich und wird somit auch immer wichtiger für Lösungsanbieter. Die Ware des Versandlagers muss zunächst aus dem Lager geholt werden und per Postpaket an den Kunden zu gesand werden. \\ Aufgrund dieses Wachstums soll ein möglichst effizientes Lagersystem erstellt werden, welches die Route des Lagerarbeiters zu den gewünschten Waren optimiert, somit die Kosten-, sowie den Zeitaufwand reduziert.
+	\begin{figure}[ht]
+		\centering
+		\fbox{
+		\includegraphics[height=0.25\textheight]{../figs/z_lieferant}}
+		\caption{Lieferant}
+	\end{figure}
+	
+
+	
+Ein Lager besteht aus mehreren Gängen, dort stehen Regale in denen die Artikel des Warenhändlers gelagert werden. \\
+Unsere Aufgabe bestand darin, die optimalste Lösung zur Warenanordnung zu finden, dabei werden die Faktoren Zeit, Kosten und Menschlichkeit berücksichtigt.
+
+
+
+
+   	%--DATEN-----------------------------------------------------------------------------------------------------
+	\section{Daten}
+
+	\includegraphics[height=0.25\textheight]{../figs/z_Lagerbild}
+
+	Legende: rot = Wand ; gelb = Tür; türkis = Quergang; orange = Regale; lila = Artikel
+
+Der Raum beträgt ein rechteckiges Format, dabei sind die Regale reihenweise, horizontal angeordnet. Sowohl das Lager, als auch die Maße der Regale können beliebig erweitert und verkleinert werden.
+
+\section{Zufallsdaten}
+Um unser Sortiersystem zu testen brauchten wir verschiedene Daten mit denen wir das Programm speisen konnten. Allerdings sollten diese Daten nicht nur zufällig sondern so realitätsnah wie möglich ermittelt werden. Das heißt, dass gewisse Artikel mit einer größeren Wahrscheinlichkeit als andere und Artikel mit verschiedenen Wahrscheinlichkeiten von Kombinationen mit anderen gekauft werden.\\
+\\ Um den ersten Schritt zu erreichen haben wir eine Array der Länge der Artikel erstellt in welcher zufällig verschieden Werte zugewiesen wurde. Diese Werte spiegeln die Wahrscheinlichkeiten wieder, wie oft der jeweilige Artikel gekauft wird. Anschließend wird die Summe der Wahrscheinlichkeiten genommen und dann eine zufallszahl in diesem Bereich ermittelt. Die Wahrscheinlichkeiten werden nacheinander geprüft und addieren bis die jetzige Summe größer oder gleich der Zufallszahl ist.\\ 
+\\Währenddessen gibt es ein Array welches in Länge und Breite so groß ist wie die Artikelanzahl. Es beinhaltet die Wahrscheinlichkeit wie oft Artikel in Kombination mit anderen auftreten. Die Wahrscheinlichkeiten hierzu werden nach gleichem Prinzip erstellt so wie die Kombinationen selber (Artikel der zu dem ersten gekauft wurde. Wieder nach einer Zufallszahl wird ermittelt wie viele Artikel pro Bestellliste gekauft werden und danach entscheidend wird dieser Vorgang wiederholt. Als letztes werden die Bestelllisten bzw. ihre Werte (also die eingekauften Artikel) ausgegeben.
+	
+	
+	
+	% -- ERSTE UEBERLEGUNGEN -------------------------------------------------------------------------------
+	\section{Komplexit"atsuntersuchung}
+	
+	Unser Ansatz bestand darin, einen Vergleich zwischen unserem Algorithmus und einer alternativ Möglichkeit zu schaffen.
+        
+Dabei werden alle Möglichkeiten durchgegangen, indem man die Fakultät der vorhandenen Artikelanzahl (n) berechnet.\\ 
+Ab einer Fakultät von 8 sieht man, dass die Kurve exponientiel wächst und somit die Möglichkeiten ab einer Fakultät von 8 sehr stark ansteigen.\\ Ab einer bestimmten Artikelanzahl (n) ist die zu berechnende Datenmenge so groß, dass sogar der schnellste Computer der Welt (Tianhe2) mehr Jahre für die Brechnung in Anspruch nimmt, als es Sterne in der Milchstraße gibt.
+
+	
+  	   Anzahl aller Konfigurationen: \\
+		 $f(n)=n!$ \\
+ 	    Annahme: Die Anzahl an Artikeln $n$ beträgt 100 und das Programm ben"otigt einen Flop zur Berechnung einer Konfiguration, so ergeben sich 
+   		\begin{align*}
+  		  \frac{9.3326\cdot10^{156}}{33\cdot10^{15}\cdot60\cdot60\cdot60\cdot24\cdot365} \enspace = 
+  		\end{align*}
+
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{../figs/z_supercomputer}
+    \end{center}
+     \begin{align*}
+      8,97\cdot 10^{129}  \ \text{Jahre}
+   \end{align*}  
+   zur Berechnung aller Konfigurationen auf einem Supercomputer.
+   Zum Vergleich: Das Universum ist 13,75 Milliarden Jahre alt, also
+   \begin{align*}
+      13,75\cdot10^{9}  \ \text{Jahre.}
+   \end{align*}
+    
+   % -- 2. ALGORITHMUS -------------------------------------------------------------------------------
+   		\section{Vorgehensweise unseres Algorithmus}
+\subsection{Benötigte Funktionen}
+Die Entfernung zwischen 2 Punkten im Lager musste berechnet werden. Hierfür wurde ein Algorithmus benötigt der Alle möglichen Lagen der beiden Punkte zueinander berücksichtigt. Diese 16 möglichen Lagen konnten erfolgreich bestimmt werden und somit ein Algorithmus programmiert werden der auch bei Hindernissen immer den optimalen weg fand.
+\subsection{Einsortierung}
+Vorbereitung:\\
+Die Kaufhäufigkeit der Artikel wird berechnet. Außerdem wird die Wahrscheinlichkeit der Kombination zweier Artikel berechnet. Ist diese Wahrscheinlichkeit höher als ein vorgegebener Grenzwert sprechen wir von einer Verbindung. \\
+
+Schritt1:\\
+Die Artikel werden nach ihrer Kaufhäufigkeit behandelt. Der meist gekaufte Artikel wird zu erst in das Lager eingesetzt. \\
+Schritt2:\\
+Es wird geprüft welches der der Tür nächste freie Lagerplatz ist. Alle Lagerplätze die näher liegen als die Entfernung des nächsten Lagerplatzes addiert zu einem Toleranzwert werden als mögliche Positionen für den Artikel angesehen.\\
+Schritt3:\\ 
+Jeder der möglichen Positionen wird ein Wert zugeordnet. Dieser setzt sich zusammen aus der Entfernung zum Eingang und der Entfernung zu Objekten zu denen der Artikel eine Verbindung hat. \\
+Schritt4:\\
+Der Artikel wird auf die Position mit dem tiefsten Wert gesetzt und somit Optimal einsortiert.
+
+% --- KÜRZESTE ROUTE FINDEN --------------
+
+\section{Route finden}
+Um die Effizienz des Warenverteilungs-Alhorithmus zu testen wurde ein Algorithmus benötigt mit welchem alle Artikel mit der Effizientesten Route verbunden werden.\\ Mit dem Algorithmus wurde das Ziel verfolgt einen Test zu finden der uns am Ende die benötigten Schritte eines Arbeiters für eine bestimmte Anzahl an Bestellungen mit variierenden Artikelzahlen ausgibt. Hierbei war zu beachten, dass wir einen möglichst genauen Algorithmus benötigen, damit die Ergebnisse des Vergleichs unserer verschiedenen Varianten des Verteilungsalgorithmus nicht durch ein ungenaues Ergebnis verfälscht werden.  
+\subsection{Optimaler Weg}
+Der erste Algorithmus dient dazu die optimale Route auszugeben.\\ Das hierzu verwendete Programm legt zunächst eine Matrix an, in der die Entfernung aller im Lager befindlichen Artikel zu einander und zur Tür gespeichert sind. Im nächsten Schritt erstellt das Programm eine Matrix in der die Permutationen der Bestellung gespeichert sind, um eine Liste aller möglichen Reihenfolgen der Artikel zu erhalten. \\An diese Liste der Routenmöglichkeiten wird nun noch vor und hinter jedem Weg die Tür gespeichert. Um nun die Länge der Wege zu überprüfen greift das Programm auf die Entfernung der in der Routenliste jeweils nebeneinander stehenden Artikel  zu und addiert sie. Nach der Überprüfung der gesamten Wegeliste wird die kleinste Summe der Artikelentfernungen mit ihrer Reigenfolge der Artikel ausgegeben. Der Vorteil dieser Vorgehensweise ist, dass die optimale Route gefunden wird um eine Bestellung ab zu laufen. Es entsteht jedoch das Problem, dass der Algorithmus eine sehr große Laufzeit hat, da er alle Möglichkeiten überprüft.
+\subsection{Eigene Suche}
+Der zweite Algorithmus wurde entwickelt um trotz vieler Artikel pro Bestellung dennoch eine akzeptable Laufzeit zu garantieren.\\ Das Programm ordnet hierzu die Bestellung zunächst nach X-Koordinate der Artikel und teilt diese Liste in eine rechte/linke Liste.\\ Diese Listen ordnen wir nun auf der rechten Seite nach aufsteigenden Y-Werten und auf der linken nach absteigenden Y-Werten. So erzeugt das Programm eine Reihenfolge, nach welcher die Produkte in einer Kreisform aufgesammelt werden wobei der Start- und Endpunkt unsere Türe ist.\\
+Der Algorithmus könnte noch verbessert werden indem man in jedem Regal, in welchem man schon einen Artikel abholt noch alle weiteren dort befindlichen Artikel, unabhängig von ihrer Position in der Liste, mitnimmt. Außerdem sollte man bei steigender Artikelzahl bzw. Lagergröße die Anzahl der Teillisten erhöhen,jedoch sollte die Anzahl der Teillsten gerade sein um die Grundidee der Kreisbewegung beizubehalten. 
+Es ist zu erwarten, dass dieser Algoritmus bei kleinen Werten schlechtere Ergebnisse als der Algorithmus zur Findung des optimalen Weges auswirft. Jedoch sollte er bei größeren Werten besser werden, es ist dieser Trend zu erkennen jedoch konnten wir ihn aufgrund fehlender Rechenleistung nicht testen.
+
+   		
+   	% -- ERGEBNISSE -------------------------------------------------------------------------------
+	\section{Ergebnisse}
+	\centering
+\tikzstyle{plot legend}=[rounded corners=2.5pt,inner xsep=3pt,inner ysep=2pt, draw=black!50,fill=white, font=\footnotesize, cells={anchor=center},
+	nodes={inner sep=2pt,text depth=0.15em,rounded corners=0pt,right}]
+\begin{tikzpicture}
+			\pgfplotsset{every axis legend/.style={plot legend,at={(0.9,0.6)}}}
+			\begin{axis}[xmajorgrids, ymajorgrids, width=0.9\textwidth, height=0.9\textheight, y tick label style={/pgf/number format/1000 sep=.}, 		xlabel={Toleranz}, ylabel={Weglänge im Lager}]
+			
+		\addplot plot coordinates {
+        		(1, 183150)
+        		(2, 183150)
+        		(5, 183150)
+        		(8, 183150)
+        		(10, 183150)
+        		(15, 183150)
+        		(20, 183150)
+    			};
+    			\addlegendentry{keine Gewichtung}
+				
+				\addplot plot coordinates {
+        		(1, 183952)
+        		(2, 180658)
+        		(5, 170212)
+        		(8, 165560)
+        		(10, 164888)
+        		(15, 163770)
+        		(20, 163770)
+    			};
+    			\addlegendentry{Gewichtungsfaktor = 0,5}
+    			
+    			\addplot plot coordinates {
+        		(1, 183952)
+        		(2, 181538)
+        		(5, 167426)
+        		(8, 163136)
+        		(10, 163262)
+        		(15, 160042)
+        		(20, 160042)
+    			};
+    			\addlegendentry{Gewichtungsfaktor = 1}
+    			
+    			\addplot plot coordinates {
+        		(1, 183952)
+        		(2, 179958)
+        		(5, 168296)
+        		(8, 163508)
+        		(10, 161362)
+        		(15, 157462)
+        		(20, 157462)
+    			};
+    			\addlegendentry{Gewichtungsfaktor = 2}
+    			
+    			\addplot plot coordinates {
+        		(1, 183952)
+        		(2, 179958)
+        		(5, 166586)
+        		(8, 165022)
+        		(10, 164288)
+        		(15, 155832)
+        		(20, 155832)
+    			};
+    			\addlegendentry{Gewichtungsfaktor = 5}
+
+			\end{axis}
+		\end{tikzpicture}
+		
+   		
+\end{document}
+% ---------------------------------------------------------------------------------
+
+

@@ -1,0 +1,376 @@
+%% LaTeX-Beamer template for KIT design
+%% by Erik Burger, Christian Hammer
+%% title picture by Klaus Krogmann
+%%
+%% version 2.1
+%%
+%% mostly compatible to KIT corporate design v2.0
+%% http://intranet.kit.edu/gestaltungsrichtlinien.php
+%%
+%% Problems, bugs and comments to
+%% burger@kit.edu
+
+\documentclass[18pt]{beamer}
+\def\tempfolder{../template/}
+%% SLIDE FORMAT
+
+% use 'beamerthemekit' for standard 4:3 ratio
+% for widescreen slides (16:9), use 'beamerthemekitwide'
+\usepackage{\tempfolder beamerthemekit}
+% \usepackage{templates/beamerthemekitwide}
+
+% -- Settings --------------------------------------------------------%
+\setbeamertemplate{navigation symbols}{}
+
+\def\figfolder{../figs/}
+\def\logofolder{\tempfolder logo/}
+
+\newcommand{\playIcon}{%
+	\begin{tikzpicture}[scale=0.5]
+	\fill[fill=black] (0,0) -- (1.5,1) -- (0, 2) -- (0, 0);
+	\end{tikzpicture}}
+
+
+\usepackage{animate}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{framed, color}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{qrcode}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{shapes}
+\usetikzlibrary{calc}
+
+%% TITLE PICTURE
+%\titleimage{mypicture}
+
+%% TITLE LOGO
+%\titlelogo{mylogo}
+
+%% TikZ INTEGRATION
+% use these packages for PCM symbols and UML classes
+% \usepackage{templates/tikzkit}
+% \usepackage{templates/tikzuml}
+
+% the presentation starts here
+
+\title[Gruppe]{Titel}
+\subtitle{Institutsname}
+\author{Namen der Gruppenmitglieder} % HINWEIS:  Alphabetisch nach Nachnamen sortieren
+
+\institute{MathSEE Modeling Week}
+
+%----------------------------------------------------------%
+\begin{document}
+	
+	\selectlanguage{english}
+		
+	%title page
+	\titleimage{\tempfolder logo/background}
+	\titlelogo{\tempfolder logo/MathSEE}
+
+	\maketitle
+
+
+	%----------------------------------------------------------%
+	%----------------------------------------------------------%
+
+
+% Outline
+\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents
+\end{frame}
+
+
+%----------------------------------------------------------%
+\begin{frame}[t]  % t=top,  c=centriert,  b=bottom
+	\frametitle{Bilder einfügen}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{../figs/z_laptop}
+	\end{center}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Bilder hintereinander einfügen}
+	\begin{center}
+		\uncover<1->{ \includegraphics[width=0.3\textwidth]{../figs/z_laptop} }
+		\uncover<2-3>{ \includegraphics[width=0.3\textwidth]{../figs/z_lieferant} }
+		\uncover<3-4>{ \includegraphics[width=0.3\textwidth]{../figs/z_lager} }
+	\end{center}
+\end{frame}
+
+%----------------------------------------------------------%
+\begin{frame}[t]
+	\frametitle{Textformatierung}
+	
+	Text {\bf fett} schreiben. \\
+	Text {\it kursiv} schreiben. \\
+	Text \underline{unterstrichen} schreiben. \\
+	Text {\color{red} rot}, {\color{blue} blau},  {\color{darkgreen} grün}, {\color{gray} grau},  {\color{blue!60!red} etc.}  schreiben. \\
+	Text {\small klein} und {\footnotesize kleiner} schreiben. \\
+	Text {\large groß} und {\Large größer} schreiben. \\
+	
+	\begin{block}{Wichtigen Text in einem Block darstellen}
+		Hier wichtiger Text \\
+		beispielsweise eine wichtige Formel \\
+		oder eine wichtige Beobachtung
+	\end{block}
+\end{frame}
+
+
+%----------------------------------------------------------%
+\begin{frame}[t]
+	\frametitle{Formeln}
+	
+	{\bf Formeln schreiben} \\
+	Ungefähr $\approx$, Multiplikation $\cdot$, Brüche $\frac{20}{21}$, \\
+	Pfeile $\rightarrow, \Rightarrow, \leftarrow, \Leftarrow, \leftrightarrow, \Leftrightarrow$, \\
+	Sinus $\sin(x)$, Cosinus $\cos(x)$, Integral $\int_a^b f(x) dx$,
+	\\[5mm]
+	{\bf Formel}
+	$$
+		\int_{a}^{b} f(x) dx = \int_{a}^{b} \sin(x) \cdot \cos(x) \cdot \frac{20}{3} dx
+	$$
+	{\bf Formel aus Wikipedia kopieren}\\
+	Gehe z.B. auf	\url{http://de.wikipedia.org/wiki/Binomialkoeffizient}
+	Markiere dort eine Formel (Bild), kopiere sie mit \, \tt{Cmd + C} \, und füge sie in das Dokument ein mit \, \tt{Cmd + V}.
+	Beachte, dass um die Formel noch die \$ Zeichen oder Doppel-\$ Zeichen stehen müssen.
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+\begin{frame}[t]
+\frametitle{Aufzählungen}
+	Durchnumerierte Aufzählungen
+	\large
+	\begin{enumerate}
+		\item<1-> Ausgangssituation: 
+		\item<2-> Statistik überArtikel
+		\item<3-> Ziel: Bestmögliche Einsortierung in Warenlager
+	\end{enumerate}
+	%
+	\vspace*{1cm}
+	%
+	Aufzählungen
+	\begin{itemize}
+		\item<4-> leeres Lager
+		\item<5-6> Einkaufslisten {\color{red} (verschwindet nach zwei Unterfolien)}
+		\item<6-> Statistik über Artikel
+		\item<6-> Kaufhäufigkeit
+		\item<7-> Kombinationskäufe
+		\item<8-> Auswertung
+	\end{itemize}						
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+\begin{frame}
+\frametitle{Einfache Zeichnungen in LaTeX}
+	\begin{center}
+	\begin{tikzpicture}
+		\draw[thick] (0,4) |- (4.5,0);
+		\draw[thick] (5.5,0) -| (10,4);
+		\node at (5,0){$\uparrow$};
+		%
+		\draw[thick] (1,1) rectangle (3,6);
+		\draw[thick] (4,1) rectangle (6,6);
+		\draw[thick] (7,1) rectangle (9,6);
+		%
+		\uncover<2->{
+			\draw[thick] (1.5,1.5) circle(0.4cm) node {\bf E};
+			\draw[thick] (2.5,1.5) circle(0.4cm) node {\bf C};
+			\draw[thick] (4.5,1.5) circle(0.4cm) node {\bf A};
+			\draw[thick] (5.5,1.5) circle(0.4cm) node {\bf B};
+			\draw[thick] (7.5,1.5) circle(0.4cm) node {\bf D};
+			\draw[thick] (8.5,1.5) circle(0.4cm) node {\bf F};
+			\draw[thick] (2.5,2.5) circle(0.4cm) node {\bf I};
+			\draw[thick] (4.5,2.5) circle(0.4cm) node {\bf G};
+			\draw[thick] (5.5,2.5) circle(0.4cm) node {\bf H};
+		}%
+	\end{tikzpicture}
+	\\%
+	\only<1>{Ein Lager}%
+	\only<2>{Artikel einsortieren}%
+	\end{center}
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+\begin{frame}
+	\frametitle{Datendiagramme}
+	\centering
+	\begin{minipage}{.45\textwidth}
+	Quoten:\\
+		\begin{tabular}{|c|c|}
+			\hline
+			Spedition & Quoten\\
+			\hline
+			\hline
+			1 & 20\% \\
+			\hline
+			2 & 30\% \\
+			\hline
+			3 & 50\% \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\pause
+	\hfill
+	\begin{minipage}{.45\textwidth}
+	Quoten:\\
+		\begin{tabular}{|c|c|}
+			\hline
+			Spedition & Quoten\\
+			\hline
+			\hline
+			1 & 20\% \\
+			\hline
+			2 & 30\% \\
+			\hline
+			3 & 50\% \\
+			\hline
+		\end{tabular}
+	\end{minipage}\\[1ex]
+	\pause
+	\begin{minipage}{\textwidth}
+	\begin{center}
+	Kapazit\"aten
+	\end{center}
+	\end{minipage}
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+\begin{frame}
+	\frametitle{Flußdiagramm}
+	\centering
+	\resizebox{!}{(\paperheight)/2}{
+			\begin{tikzpicture}[auto]
+				\usetikzlibrary{arrows,shapes,calc}
+				\tikzstyle{block} = [rectangle, draw, fill=blue!20, text centered, rounded corners, minimum height=1.5em]
+				\tikzstyle{line} = [draw, -latex']%, line width=3pt]
+				\tikzstyle{cloud} = [draw, ellipse,fill=red!20, minimum height=1.5em]
+				\tikzstyle{cloud} = [rectangle, draw, fill=red!20, text centered, rounded corners, minimum height=1.5em]
+				
+				\node [block] (GegDaten) {Gegebene Daten};
+				\node [block, below of=GegDaten] (Optimierung) {Sortierung der Aufträge nach der Größe};
+				\path [line] (GegDaten) -- (Optimierung);
+				\node [block, below of=Optimierung] (Diff) {Berechnung der Differenz der einzelnen Kilometerzahlen};
+				\path [line] (Optimierung) -- (Diff);
+				\node [block, below of=Diff, node distance=4em] (Wahl) {\begin{minipage}{20em} % Minipage für Zeilenumbrüche
+				\begin{center}
+				Wähle das Tauschpaar mit der größten positiven und negativen Differenz und bestimme den besten Tausch
+				\end{center}
+				\end{minipage}};
+				\path [line] (Diff) -- (Wahl);
+				\node [block, below of=Wahl, node distance=4em] (guenstig) {Ist der Tausch günstig?};
+				\node [block, right of=guenstig, node distance=15em] (tauschen) {Tausch};
+				\path [line] (Wahl) -- (guenstig);
+				\path [line] (guenstig) -- node  {ja}  (tauschen);
+				\path [line] (tauschen) |- (Optimierung);
+				\node [cloud, below of=guenstig, node distance= 4em] (berechnen) {Ende};
+				\path [line] (guenstig) -- node {nein} (berechnen);
+			\end{tikzpicture}
+		}
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+\begin{frame}
+	\frametitle{Kreisdiagramm}
+	\centering
+	\begin{tikzpicture}
+		\def\radius{2.8cm}
+		\foreach \startA/\endA/\percent/\anchor/\name in {%
+			0/211/58.5/above/Artikel 1,
+			211/249/10.6/below/Artikel 2,
+			249/295/12.8/below/Artikel 3,
+			295/329/9.6/below/Artikel 4,
+			329/360/8.5/right/Artikel 5}%
+		{
+			\draw[fill=kit-green70, thick] (0,0) -- (\endA:\radius) arc (\endA:\startA:\radius)  node at ({0.5*\startA+0.5*\endA}:1.8cm) {\textcolor{black}{\percent \%}};
+			\draw ({0.5*\startA+0.5*\endA}:\radius) -- ({0.5*\startA+0.5*\endA}:{\radius+0.5cm}) node[\anchor] {\textcolor{black}{\name}};
+		};
+	\end{tikzpicture}
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+ \begin{frame}
+	\frametitle{Balkendiagramm}
+	\begin{center}
+	\begin{tikzpicture}
+			\foreach \y in {-1,0,1,2,3,4}
+				\draw[gray!50, text=black] (-2,\y cm) -- (6,\y cm);
+ 			%
+ 				\node[draw, rectangle, thick, minimum height=6cm, minimum width=1cm, fill=blue!20] at (-1, 1.5) {100 \%};
+			\node[draw, rectangle, thick, minimum height=5.6cm, minimum width=1cm, fill=darkgreen!20] at (2, 1.3) {97.5 \%};
+			\node[draw, rectangle, thick, minimum height=4.6cm, minimum width=1cm, fill=red!20] at (5, 0.8) {82.9 \%};
+			%
+			\node at (-1, 4.7) {187750};
+			\node at (2, 4.3) {183150};
+			\node at (5, 3.3) {155832};
+			%
+			\draw[thick] (-2,-1.5) -- (6,-1.5);
+			\node at (-1,-2) {Zufällig};
+			\node at (2,-2) {Algorithmus}; \node at (2,-2.4) {ohne Verbindung};
+			\node at (5,-2) {Algorithmus}; \node at (5,-2.4) {mit Verbindung};
+	\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+
+
+%----------------------------------------------------------%
+%----------------------------------------------------------%
+%----------------------------------------------------------%
+\begin{frame}[c]
+	\frametitle{Ausblick}
+	\begin{itemize} 
+		\item 3D berücksichtigen
+		\item unterschiedliche Artikelgröße berücksichtigen
+	\end{itemize}	
+	\includegraphics[trim=0pt 0pt 0pt 0pt, clip, width=0.7\textwidth]{../figs/z_supercomputer}
+\end{frame}
+
+
+%----------------------------------------------------------%
+\begin{frame}[c]
+	%\frametitle{Ausblick}
+	\centering \bfseries Vielen Dank für Ihre Aufmerksamkeit!
+	\\[15mm]
+	\includegraphics[trim=0pt 0pt 0pt 0pt, clip, width=0.45\textwidth]{../figs/z_jtl}
+\end{frame}
+
+
+\end{document}
+% ---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

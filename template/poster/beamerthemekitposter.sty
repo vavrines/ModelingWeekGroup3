@@ -1,0 +1,168 @@
+%% LaTeX-Beamer poster template for KIT design
+%% by Erik Burger, Christian Hammer
+%%
+%% version 1.2
+%%
+%% mostly compatible to KIT corporate design v1.2
+%% http://www.uni-karlsruhe.de/download/uka/Gestaltungsrichtlinien_komplett.pdf
+%%
+%% Problems, bugs and comments to
+%% burger@kit.edu
+
+\ProvidesPackage{beamerthemekit}  
+
+\usepackage[T1]{fontenc}
+
+\usepackage[english,ngerman]{babel}
+\usepackage{ifthen} %For choosing the language, see below
+\usepackage{hyperref}
+
+\usepackage{times}
+
+\selectcolormodel{cmyk}
+\usecolortheme{kit}
+
+\geometry{hmargin=.05\paperwidth}
+
+\setlength\leftmargini{4em}
+
+\setbeamerfont{block title}{size=\large,series=\bf}
+
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+%CH: KIT-point
+\setbeamertemplate{itemize items}{
+\begin{pgfpicture}{0mm}{0mm}{1.5ex}{1ex}
+{\pgfsetcornersarced{\pgfpoint{.3ex}{.3ex}} 
+\pgfpathmoveto{\pgfpoint{0cm}{1ex}} 
+\pgfpathlineto{\pgfpoint{1ex}{1ex}}
+\pgfpathlineto{\pgfpoint{1ex}{0cm}}}
+{\pgfsetcornersarced{\pgfpoint{.3ex}{.3ex}}
+\pgfpathmoveto{\pgfpoint{1ex}{0cm}}
+\pgfpathlineto{\pgfpointorigin}
+\pgfpathlineto{\pgfpoint{0cm}{1ex}}}
+\color{kit-green100}
+\pgfusepath{fill}
+\end{pgfpicture}%
+}
+
+
+%background for pages
+\newlength{\kitbottom}
+\usebackgroundtemplate{
+	\setlength{\kitbottom}{.08\paperwidth}%
+\begin{pgfpicture}{0mm}{0mm}{\paperwidth}{\paperheight}
+
+	{\pgfsetcornersarced{\pgfpoint{.02\paperwidth}{.02\paperwidth}}
+	\pgfpathmoveto{\pgfpoint{.98\paperwidth}{\kitbottom}}
+	\pgfpathlineto{\pgfpoint{.02\paperwidth}{\kitbottom}}
+	\pgfpathlineto{\pgfpoint{.02\paperwidth}{\paperheight-.02\paperwidth}}}
+
+	{\pgfsetcornersarced{\pgfpoint{.02\paperwidth}{.02\paperwidth}}
+	\pgfpathmoveto{\pgfpoint{.02\paperwidth}{\paperheight-.02\paperwidth}}
+	\pgfpathlineto{\pgfpoint{.98\paperwidth}{\paperheight-.02\paperwidth}}
+	\pgfpathlineto{\pgfpoint{.98\paperwidth}{\kitbottom}}}
+
+	\color{white}
+	\pgfusepath{fill}
+
+\end{pgfpicture}%
+}
+
+%frametitle
+\setbeamertemplate{frametitle}
+{
+}
+
+
+\setbeamertemplate{headline}
+{
+\vspace{.05\paperwidth}
+\begin{columns}{T}
+
+\begin{column}{.05\paperwidth}
+\end{column}
+
+\begin{column}{.4\paperwidth}
+\iflanguage{english}{%
+\includegraphics[width=.2\paperwidth]{logos/kitlogo_en_cmyk} 
+}{
+\includegraphics[width=.2\paperwidth]{logos/kitlogo_de_cmyk} 
+}
+\end{column}
+
+\begin{column}{.5\paperwidth}
+\textcolor{black!75}{
+\normalsize
+\insertinstitute
+}
+\end{column}
+
+\begin{column}{.05\paperwidth}
+\end{column}
+
+\end{columns}
+
+\vspace{.03\paperwidth}
+
+\begin{beamercolorbox}[wd=.9\paperwidth,leftskip=.05\paperwidth]{bg}
+\begin{minipage}{.87\paperwidth}
+\Huge
+\bfseries
+\inserttitle\\[.4em]
+\Large
+\insertsubtitle\\[.4em]
+\insertauthor
+\end{minipage}
+\end{beamercolorbox}
+
+}
+
+%footer
+\setbeamertemplate{footline}
+{
+\leavevmode
+
+\begin{beamercolorbox}[wd=\paperwidth,ht=.05\paperwidth,dp=.03\paperwidth]{section in head/foot}
+\begin{columns}{T}
+
+\begin{column}{.05\paperwidth}
+\end{column}
+
+\begin{column}{.7\paperwidth}
+\normalsize
+\iflanguage{english}{KIT -- University of the State of Baden-Wuerttemberg and\\National Laboratory of the Helmholtz Association}
+{KIT -- Universit{\"a}t des Landes Baden-W{\"u}rttemberg und\\nationales Forschungszentrum in der Helmholtz-Gemeinschaft}
+\end{column}
+
+\begin{column}{.18\paperwidth}
+\LARGE
+\bfseries
+\begin{flushright}
+\textcolor{black!75}{
+	\href{http://www.kit.edu}{www.kit.edu}
+}
+\end{flushright}
+\end{column}
+
+\begin{column}{.07\paperwidth}
+\end{column}
+
+\end{columns}
+\end{beamercolorbox}
+}
+
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[ht=3.5ex,dp=-0.5ex,center,leftskip=-1em,colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}%
+    {\phantom{Gg}\insertblocktitle}% phantom because of baseline problem
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[leftskip=1em,colsep*=.75ex,sep=0.5ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}

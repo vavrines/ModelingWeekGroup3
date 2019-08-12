@@ -1,0 +1,152 @@
+%% LaTeX-Beamer template for KIT design
+%% by Erik Burger, Christian Hammer
+%% title picture by Klaus Krogmann
+%%
+%% version 2.0
+%%
+%% mostly compatible to KIT corporate design v2.0
+%% http://intranet.kit.edu/gestaltungsrichtlinien.php
+%%
+%% Problems, bugs and comments to
+%% burger@kit.edu
+
+% -- Colors --------------------------------------------------------%
+% RWTH und weitere Farben 
+%\definecolor{rwth-blue}{cmyk}{1,.5,0,0}\colorlet{rwth-lblue}{rwth-blue!50}\colorlet{rwth-llblue}{rwth-blue!25}
+\definecolor{rwth-blue}{HTML}{00549F}\definecolor{rwth-lblue}{HTML}{8EBAE5}\definecolor{rwth-llblue}{HTML}{C7DDF2}
+\definecolor{rwth-violet}{cmyk}{.6,.6,0,0}\colorlet{rwth-lviolet}{rwth-violet!50}\colorlet{rwth-llviolet}{rwth-violet!25}
+\definecolor{rwth-purple}{cmyk}{.7,1,.35,.15}\colorlet{rwth-lpurple}{rwth-purple!50}\colorlet{rwth-llpurple}{rwth-purple!25}
+\definecolor{rwth-carmine}{cmyk}{.25,1,.7,.2}\colorlet{rwth-lcarmine}{rwth-carmine!50}\colorlet{rwth-llcarmine}{rwth-carmine!25}
+\definecolor{rwth-red}{cmyk}{.15,1,1,0}\colorlet{rwth-lred}{rwth-red!50}\colorlet{rwth-llred}{rwth-red!25}
+\definecolor{rwth-magenta}{cmyk}{0,1,.25,0}\colorlet{rwth-lmagenta}{rwth-magenta!50}\colorlet{rwth-llmagenta}{rwth-magenta!25}
+\definecolor{rwth-orange}{cmyk}{0,.4,1,0}\colorlet{rwth-lorange}{rwth-orange!50}\colorlet{rwth-llorange}{rwth-orange!25}
+\definecolor{rwth-yellow}{cmyk}{0,0,1,0}\colorlet{rwth-lyellow}{rwth-yellow!50}\colorlet{rwth-llyellow}{rwth-yellow!25}
+\definecolor{rwth-grass}{cmyk}{.35,0,1,0}\colorlet{rwth-lgrass}{rwth-grass!50}\colorlet{rwth-llgrass}{rwth-grass!25}
+\definecolor{rwth-green}{cmyk}{.7,0,1,0}\colorlet{rwth-lgreen}{rwth-green!50}\colorlet{rwth-llgreen}{rwth-green!25}
+\definecolor{rwth-cyan}{cmyk}{1,0,.4,0}\colorlet{rwth-lcyan}{rwth-cyan!50}\colorlet{rwth-llcyan}{rwth-cyan!25}
+\definecolor{rwth-teal}{cmyk}{1,.3,.5,.3}\colorlet{rwth-lteal}{rwth-teal!50}\colorlet{rwth-llteal}{rwth-teal!25}
+\definecolor{rwth-silver}{cmyk}{.39,.31,.32,.14}
+\definecolor{rwth-gold}{cmyk}{.35,.46,.7,.35}
+\def\blue#1{\textcolor{rwth-blue}{#1}}\renewcommand{\blue}[2][100]{\textcolor{rwth-blue!#1}{#2}}
+\def\violet#1{\textcolor{rwth-violet}{#1}}\renewcommand{\violet}[2][100]{\textcolor{rwth-violet!#1}{#2}}
+\def\purple#1{\textcolor{rwth-purple}{#1}}\renewcommand{\purple}[2][100]{\textcolor{rwth-purple!#1}{#2}}
+\def\carmine#1{\textcolor{rwth-carmine}{#1}}\renewcommand{\carmine}[2][100]{\textcolor{rwth-carmine!#1}{#2}}
+\def\red#1{\textcolor{rwth-red}{#1}}\renewcommand{\red}[2][100]{\textcolor{rwth-red!#1}{#2}}
+\def\magenta#1{\textcolor{rwth-magenta}{#1}}\renewcommand{\magenta}[2][100]{\textcolor{rwth-magenta!#1}{#2}}
+\def\orange#1{\textcolor{rwth-orange}{#1}}\renewcommand{\orange}[2][100]{\textcolor{rwth-orange!#1}{#2}}
+\def\yellow#1{\textcolor{rwth-yellow}{#1}}\renewcommand{\yellow}[2][100]{\textcolor{rwth-yellow!#1}{#2}}
+\def\grass#1{\textcolor{rwth-grass}{#1}}\renewcommand{\grass}[2][100]{\textcolor{rwth-grass!#1}{#2}}
+\def\green#1{\textcolor{rwth-green}{#1}}\renewcommand{\green}[2][100]{\textcolor{rwth-green!#1}{#2}}
+\def\cyan#1{\textcolor{rwth-cyan}{#1}}\renewcommand{\cyan}[2][100]{\textcolor{rwth-cyan!#1}{#2}}
+\def\teal#1{\textcolor{rwth-teal}{#1}}\renewcommand{\teal}[2][100]{\textcolor{rwth-teal!#1}{#2}}
+\def\silver#1{\textcolor{rwth-silver}{#1}}\renewcommand{\silver}[2][100]{\textcolor{rwth-silver!#1}{#2}}
+\def\gold#1{\textcolor{rwth-gold}{#1}}\renewcommand{\gold}[2][100]{\textcolor{rwth-gold!#1}{#2}}
+\def\black#1{\textcolor{black}{#1}}\renewcommand{\black}[2][100]{\textcolor{black!#1}{#2}}
+\def\white#1{\textcolor{white}{#1}}
+
+% -- Colors extra --------------------------------------------------------%
+% RWTH
+\definecolor{darkblue}{HTML}{00549F}
+\definecolor{lightblue}{HTML}{407FB7}
+%\colorlet{titlegray}{gray!70!black}
+\definecolor{darkgreen}{HTML}{6CB540}
+
+% KIT
+\definecolor{kit-maigruen}{RGB}{140 182 60}\colorlet{kit-lmaigruen}{kit-maigruen!80}\colorlet{kit-llmaigruen}{kit-maigruen!60}\colorlet{kit-lllmaigruen}{kit-maigruen!40}\colorlet{kit-llllmaigruen}{kit-maigruen!40}
+
+\definecolor{kit-gelb}{RGB}{252 229 0}\colorlet{kit-lgelb}{kit-gelb!80}\colorlet{kit-llgelb}{kit-gelb!60}\colorlet{kit-lllgelb}{kit-gelb!40}\colorlet{kit-llllgelb}{kit-gelb!40}
+
+\definecolor{kit-orange}{RGB}{223 155 27}\colorlet{kit-lorange}{kit-orange!80}\colorlet{kit-llorange}{kit-orange!60}\colorlet{kit-lllorange}{kit-orange!40}\colorlet{kit-llllorange}{kit-orange!40}
+
+\definecolor{kit-braun}{RGB}{167 130 46}\colorlet{kit-lbraun}{kit-braun!80}\colorlet{kit-llbraun}{kit-braun!60}\colorlet{kit-lllbraun}{kit-braun!40}\colorlet{kit-llllbraun}{kit-braun!40}
+
+\definecolor{kit-rot}{RGB}{162 34 35}\colorlet{kit-lrot}{kit-rot!80}\colorlet{kit-llrot}{kit-rot!60}\colorlet{kit-lllrot}{kit-rot!40}\colorlet{kit-llllrot}{kit-rot!40}
+
+\definecolor{kit-lila}{RGB}{163 16 124}\colorlet{kit-llila}{kit-lila!80}\colorlet{kit-lllila}{kit-lila!60}\colorlet{kit-llllila}{kit-lila!40}\colorlet{kit-lllllila}{kit-lila!40}
+
+\definecolor{kit-cyanblau}{RGB}{35 161 224}\colorlet{kit-lcyanblau}{kit-cyanblau!80}
+\colorlet{kit-llcyanblau}{kit-cyanblau!60}\colorlet{kit-lllcyanblau}{kit-cyanblau!40}\colorlet{kit-llllcyanblau}{kit-cyanblau!40}
+
+
+\definecolor{kit-green100}{rgb}{0,.59,.51}
+\definecolor{kit-green70}{rgb}{.3,.71,.65}
+\definecolor{kit-green50}{rgb}{.50,.79,.75}
+\definecolor{kit-green30}{rgb}{.69,.87,.85}
+\definecolor{kit-green15}{rgb}{.85,.93,.93}
+
+%\definecolor{kit-green100}{cmyk}{1,0,.6,0}
+%\definecolor{kit-green70}{cmyk}{.7,0,.42,0}
+%\definecolor{kit-green50}{cmyk}{.5,0,.3,0}
+%\definecolor{kit-green30}{cmyk}{.3,0,.18,0}
+%\definecolor{kit-green15}{cmyk}{.15,0,.09,0}
+
+\definecolor{kit-blue100}{rgb}{.27,.39,.67}
+\definecolor{kit-blue70}{rgb}{.49,.57,.76}
+\definecolor{kit-blue50}{rgb}{.64,.69,.83}
+\definecolor{kit-blue30}{rgb}{.78,.82,.9}
+\definecolor{kit-blue15}{rgb}{.89,.91,.95}
+
+%\definecolor{kit-blue100}{cmyk}{1,.5,0,0}
+%\definecolor{kit-blue70}{cmyk}{.56,.53,0,0}
+%\definecolor{kit-blue50}{cmyk}{.4,.25,0,0}
+%\definecolor{kit-blue30}{cmyk}{.24,.15,0,0}
+%\definecolor{kit-blue15}{cmyk}{.12,.075,0,0}
+
+\definecolor{kit-yellow100}{cmyk}{0,.05,1,0}
+\definecolor{kit-yellow70}{cmyk}{0,.035,.7,0}
+\definecolor{kit-yellow50}{cmyk}{0,.025,.5,0}
+\definecolor{kit-yellow30}{cmyk}{0,.015,.3,0}
+\definecolor{kit-yellow15}{cmyk}{0,.0075,.15,0}
+
+\definecolor{kit-orange100}{cmyk}{0,.45,1,0}
+\definecolor{kit-orange70}{cmyk}{0,.315,.7,0}
+\definecolor{kit-orange50}{cmyk}{0,.225,.5,0}
+\definecolor{kit-orange30}{cmyk}{0,.135,.3,0}
+\definecolor{kit-orange15}{cmyk}{0,.0675,.15,0}
+
+\definecolor{kit-red100}{cmyk}{.25,1,1,0}
+\definecolor{kit-red70}{cmyk}{.175,.7,.7,0}
+\definecolor{kit-red50}{cmyk}{.125,.5,.5,0}
+\definecolor{kit-red30}{cmyk}{.075,.3,.3,0}
+\definecolor{kit-red15}{cmyk}{.0375,.15,.15,0}
+
+\mode<presentation>
+
+\setbeamercolor*{normal text}{fg=black,bg=white}
+\setbeamercolor*{alerted text}{fg=kit-red100}
+\setbeamercolor*{example text}{fg=black}
+\setbeamercolor*{structure}{fg=black}
+
+%\setbeamerfont{alerted text}{series=\bfseries}
+
+\setbeamercolor*{palette primary}{fg=black,bg=black!15}
+\setbeamercolor*{palette secondary}{fg=black,bg=black!15}
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!15}
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!15}
+
+\setbeamercolor{sidebar}{bg=}
+
+\setbeamercolor*{palette sidebar primary}{fg=black!75}
+\setbeamercolor*{palette sidebar secondary}{fg=black!75}
+\setbeamercolor*{palette sidebar tertiary}{fg=black!75}
+\setbeamercolor*{palette sidebar quaternary}{fg=black!75}
+
+\setbeamercolor*{item projected}{fg=black,bg=kit-green100}
+
+\setbeamercolor*{block title}{fg=white,bg=kit-green100}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor*{block title example}{fg=white,bg=kit-blue100}
+
+\setbeamercolor*{block body}{fg=black,bg=kit-green15}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor*{block body example}{fg=black,bg=kit-blue15}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor*{background canvas}{bg=black!15}
+\setbeamercolor*{background}{bg=black!15}
+
+\pagecolor{black!15}
+\mode
+<all>
