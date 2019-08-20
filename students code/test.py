@@ -21,6 +21,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         super().__init__()
         self._main = QWidget()
         self.setCentralWidget(self._main)
+        self.setGeometry(10, 60, 1500, 800)
         layout = QVBoxLayout(self._main)
         self.var = QComboBox();
         layout.addWidget(self.var)
@@ -29,14 +30,14 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         
         self.altVal = QLabel()
         self.timeVal = QLabel()
+        
         layout.addWidget(self.altVal)
         layout.addWidget(self.timeVal)
-        
         
         self.x, self.y, self.altitudes = self.get_axes_and_alt()
         self.times = {}
         self.get_times()
-        static_canvas = FigureCanvas(Figure(figsize=(5, 3)))
+        static_canvas = FigureCanvas(Figure(figsize=(5, 8)))
         layout.addWidget(static_canvas)
 
         self._static_ax = static_canvas.figure.subplots()
@@ -66,6 +67,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.sl_alt.valueChanged.connect(self.valuechange_alt)
         
         self.fig, self.ax = plt.subplots()
+        
         self.update_plot()
         self.setLayout(layout)
         self.setWindowTitle("Visualisation demo")
@@ -108,8 +110,14 @@ class ApplicationWindow(QtWidgets.QMainWindow):
           
         #self.clb.remove()
         self.im = self._static_ax.imshow(values)
-        
-        #self.clb = self._static_ax.figure.colorbar(self.im)
+        try:
+            self.clb.remove()
+            del self.clb
+        except:
+            pass
+        self.clb = self._static_ax.figure.colorbar(self.im)
+        self._static_ax.set_xlabel('lon')
+        self._static_ax.set_ylabel('lat')
         self._static_ax.figure.canvas.draw()
         self.blockChanges = False
         dataset.close()
@@ -140,6 +148,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
     
 
 os.chdir('D:\\My Docs\\ModelingWeek\\data')
+os.chdir('F://data/0216')
 
 qapp = QtWidgets.QApplication(sys.argv)
 app = ApplicationWindow()
