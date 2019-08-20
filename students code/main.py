@@ -1,7 +1,0 @@
-%% Start
-clc;
-clear all;
-
-
-%% ..
-
