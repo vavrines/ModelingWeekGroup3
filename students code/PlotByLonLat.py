@@ -16,6 +16,7 @@ from matplotlib.figure import Figure
 from glob import glob
 from netCDF4 import Dataset
 
+
 class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -117,7 +118,15 @@ class ApplicationWindow(QtWidgets.QMainWindow):
             pass
         self.clb = self._static_ax.figure.colorbar(self.im)
         self._static_ax.set_xlabel('lon')
+        xticks = [i for i in range(0, len(self.x), int(len(self.x) / 10))]
+        xtickslabels = [self.x[i] for i in range(0, len(self.x), int(len(self.x) / 10))]
+        yticks = [i for i in range(0, len(self.y), int(len(self.y) / 10))]
+        ytickslabels = [self.y[i] for i in range(0, len(self.y), int(len(self.y) / 10))]
         self._static_ax.set_ylabel('lat')
+        self._static_ax.set_xticks(xticks)
+        self._static_ax.set_xticklabels(xtickslabels)
+        self._static_ax.set_yticks(yticks)
+        self._static_ax.set_yticklabels(ytickslabels)
         self._static_ax.figure.canvas.draw()
         self.blockChanges = False
         dataset.close()
@@ -148,7 +157,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
     
 
 os.chdir('D:\\My Docs\\ModelingWeek\\data')
-os.chdir('F://data/0216')
+#os.chdir('F://data/0216')
 
 qapp = QtWidgets.QApplication(sys.argv)
 app = ApplicationWindow()
