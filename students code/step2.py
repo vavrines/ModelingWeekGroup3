@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[7]:
 
 
 import sys
@@ -11,9 +11,17 @@ import matplotlib.pyplot as plt
 from  matplotlib.lines import Line2D
 from netCDF4 import Dataset
 
+
+# In[9]:
+
+
 dataset = Dataset(r"E:\ModelingWeek\data\2016021600-ART-chemtracer_grid_reg_DOM02_HL_0007.nc")
 print("The dimentions of the dataset are:\n ", dataset.dimensions.keys(), "\n")
 print("The variables of the dataset are:\n ",  dataset.variables.keys(),  "\n")
+
+
+# In[10]:
+
 
 time = dataset.variables['time']
 lon = dataset.variables['lon']
@@ -24,6 +32,10 @@ PV = dataset.variables['pv']
 qv = dataset.variables['qv']
 
 pv = (10 ** 6) * PV[:]
+
+
+# In[11]:
+
 
 plt.figure()
 plt.pcolormesh(lon[:], alt[:], pv[3,: , 100, :])
@@ -36,9 +48,10 @@ for i in range(2):
         CS = plt.contour(lat[:], alt[:], pv[i+j, :, :, 100], [0, 2, 4])
         plt.clabel(CS, inline = 1, fontsize = 10)
 
-        
-        
-# =================== find the indices =========================================
+
+# In[12]:
+
+
 lenTime = len(time)
 lenAlt = len(alt)
 lenLon = len(lon)
@@ -50,6 +63,9 @@ numSlide = 0
 indexOfLargeRange = [];
 indices = []
 length = 0;
+
+#lowerBound = 0
+#upperBound = 3
 
 indexOfTime = 0;
 tolerrence = 0.001
@@ -71,6 +87,10 @@ for t in pv:
             else:
                 indices = index
             length = length + index.shape[0]
+            
+
+        indexOfAlt += 1
+    indexOfTime += 1                
 
 print("The number of  different slides: %d" %numSlide)
 print("The number of index pairs is : %d" % length)
@@ -80,11 +100,15 @@ indices = np.asarray(indices)
 print(indices.shape)
 
 
-# ========== plot the altitude ======================================================
+# In[13]:
+
+
 time0 = []
 time1 = []
 time2 = []
 time3 = []
+
+
 def Connection(time, index):
     if len(time) == 0:
         time = index
@@ -125,4 +149,10 @@ ax4 = plt.subplot(2, 2, 4)
 ax4.scatter(lon[time3[:, 3]], lat[time3[:, 2]], c = alt[time3[:, 1]])
 plt.legend(*scatter.legend_elements(),bbox_to_anchor=(1.7, 1),loc = 'center right', borderaxespad = 0.1)
 plt.show()
+
+
+# In[ ]:
+
+
+
 
