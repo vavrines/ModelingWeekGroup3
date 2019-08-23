@@ -106,7 +106,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         return (float(self.limitmin.text().replace(',', '.')), float(self.limitmax.text().replace(',', '.')))
     
     def fillVars(self):
-        dataset = Dataset(glob("*")[0])
+        dataset = Dataset(glob("*nc")[0])
         vars = list(dataset.variables.keys())
         vars.remove('lat')
         vars.remove('alt')
@@ -142,9 +142,11 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 #         points = multidim_intersect(a_complete, b_complete)
         a_alt, a_lat, a_lon = np.where((pv>minval*10**-6) & (pv<maxval*10**-6))
         points = np.hstack((a_alt.reshape(a_alt.size, 1), a_lat.reshape(a_alt.size, 1), a_lon.reshape(a_alt.size, 1)))
-        
+        mean_val = 0.0
+        mean_arr = []
         for line in points:
             humval = qv[line[0], line[1], line[2]]
+
             marker = 'o'
             c = 'k'
             if humval < 10**-5:
@@ -158,8 +160,9 @@ class ApplicationWindow(QtWidgets.QMainWindow):
                 c = 'r'
                   
             self.ax.scatter(self.x[line[2]], self.y[line[1]], self.alt[line[0]], c=c, marker=marker)
-          
-          
+            # self.ax.plot(self.x[line[2]], self.alt[line[0]], '+g', zdir='y', zs=0.0)
+            # self.ax.plot(self.x[line[2]], self.y[line[1]], '+k', zdir='z', zs=0.0)
+
 #         
 #         
 #         z = [self.alt[i[0]] for i in points]
@@ -180,14 +183,14 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
 
     def get_axes_and_alt(self):
-        dataset = Dataset(glob('*')[0])
+        dataset = Dataset(glob('*nc')[0])
         x = np.array(dataset.variables['lon'])
         y = np.array(dataset.variables['lat'])
         alt = list(np.array(dataset.variables['alt']))
         dataset.close()
         return x, y, alt
     def get_times(self):
-        for path in glob('*'):
+        for path in glob('*nc'):
             dataset = Dataset(path)
             for t in np.array(dataset.variables['time']):
                 if t not in self.times.keys():
@@ -196,7 +199,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
     
 
-os.chdir('D:\\My Docs\\ModelingWeek\\data')
+os.chdir('F:\\MathSEE\ModelingWeekGroup3\dataset')
 #os.chdir('F://data/0216')
 
 qapp = QtWidgets.QApplication(sys.argv)
